@@ -1,7 +1,5 @@
-function getComputerChoice(){
-    const type = ["rock", "paper", "scissors"];
-    return type[Math.floor(Math.random() * type.length)];
-}
+/* older version
+
 
 //console.log(getComputerChoice());
 
@@ -28,12 +26,13 @@ function gameRound(playerSelection, computerSelection){
 /*
 const playerChoice = "sciSsoRs";
 const computerSelection = getComputerChoice();
-*/
+
 
 
 function game(){
     let playerPoint = 0;
     let computerPoint = 0;
+    /*
     for (let i = 0; i < 5; i++){
 
         let playerSelection = prompt("Enter your choice: ");
@@ -51,6 +50,9 @@ function game(){
             console.log("It's a tie game!");
         }
     }
+    
+
+    
 
     if (playerPoint === computerPoint){
         return "It's a tie game!"
@@ -59,6 +61,28 @@ function game(){
     } else if (computerPoint > playerPoint){
         return "You lose! ";
     }
+}*/
+
+
+const paperButton = document.querySelector('#paper-btn');
+const rockButton = document.querySelector('#rock-btn');
+const scissorsButton = document.querySelector('#scissors-btn');
+
+paperButton.addEventListener('click', function (e){
+    console.log(e.target);
+});
+
+rockButton.addEventListener('click', function (e){
+    console.log(e.target);
+});
+
+scissorsButton.addEventListener('click', function (e){
+    console.log(e.target);
+});
+
+function getComputerChoice(){
+    const type = ["rock", "paper", "scissors"];
+    return type[Math.floor(Math.random() * type.length)];
 }
 
-console.log(game());
+console.log(getComputerChoice());

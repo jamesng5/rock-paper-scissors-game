@@ -8,4 +8,5 @@ A basic Rock Paper Scissors game to practice basic HTML/CSS/JavaScript
 **Aug 16th**
 - Remove user prompt choice
 - Add buttons with event listener as user choices
-- Display game results
+- Display each game results with running score after each round
+- Announce winner once one player reach 5 pts

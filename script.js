@@ -3,25 +3,7 @@
 
 //console.log(getComputerChoice());
 
-function gameRound(playerSelection, computerSelection){
-    //console.log(playerSelection);
 
-    if (playerSelection.toLowerCase() === computerSelection ){
-        return 0;
-    }
-
-    else if ((playerSelection.toLowerCase() === "rock" && computerSelection === "scissors") ||
-        (playerSelection.toLowerCase() === "paper" && computerSelection === "rock") ||
-        (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper")){
-            return 1;
-    }
-    
-    else if ((computerSelection === "rock" && playerSelection.toLowerCase() === "scissors") ||
-        (computerSelection === "paper" && playerSelection.toLowerCase() === "rock") ||
-        (computerSelection === "scissors" && playerSelection.toLowerCase() === "paper")){
-            return -1;
-    }
-}
 
 /*
 const playerChoice = "sciSsoRs";
@@ -63,26 +45,45 @@ function game(){
     }
 }*/
 
+let playerSelection;
+let computerSelection;
+let playerPoint = 0;
+let computerPoint = 0;
 
-const paperButton = document.querySelector('#paper-btn');
-const rockButton = document.querySelector('#rock-btn');
-const scissorsButton = document.querySelector('#scissors-btn');
-
-paperButton.addEventListener('click', function (e){
-    console.log(e.target);
-});
-
-rockButton.addEventListener('click', function (e){
-    console.log(e.target);
-});
-
-scissorsButton.addEventListener('click', function (e){
-    console.log(e.target);
-});
-
+//get computer choice
 function getComputerChoice(){
     const type = ["rock", "paper", "scissors"];
     return type[Math.floor(Math.random() * type.length)];
 }
 
-console.log(getComputerChoice());
+function playRound(playerSelection, computerSelection){
+    computerSelection = getComputerChoice();
+    //console.log(computerSelection);
+
+    if (playerSelection.toLowerCase() === computerSelection ){
+        return 0;
+    }
+
+    else if ((playerSelection.toLowerCase() === "rock" && computerSelection === "scissors") ||
+        (playerSelection.toLowerCase() === "paper" && computerSelection === "rock") ||
+        (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper")){
+            playerPoint++;
+            return 1; 
+    }
+    
+    else if ((computerSelection === "rock" && playerSelection.toLowerCase() === "scissors") ||
+        (computerSelection === "paper" && playerSelection.toLowerCase() === "rock") ||
+        (computerSelection === "scissors" && playerSelection.toLowerCase() === "paper")){
+            computerPoint++;
+            return -1;
+    }
+}
+
+let buttons = document.querySelectorAll('button');
+buttons.forEach((button) =>{
+    button.addEventListener('click', (e) => {
+        playerSelection = e.target.innerText;
+        playRound(playerSelection.toLowerCase(), computerSelection);
+    });
+})
+

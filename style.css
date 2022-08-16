@@ -1,0 +1,26 @@
+body {
+    background-color: #4D5656;
+}
+
+.container{
+    margin-top: 250px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: xx-large;
+    display: block;
+}
+
+.player-choice{
+    text-align: center;
+    display: block;
+}
+
+.button {
+    font-size: xx-large;
+    width: 200px;
+    height: 200px;
+    border-width: 5px;
+    margin-top: 125px;
+    border-radius: 10px;
+}
+

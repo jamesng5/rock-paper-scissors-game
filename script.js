@@ -30,7 +30,6 @@ function gameResult(){
 function playRound(playerSelection, computerSelection){
 
     if (playerSelection === computerSelection ){
-        //container.textContent = "It's a tie game!";
         container.textContent = "It's a tie game!";
         gamePoint.textContent = `Player: ${playerPoint} ||| Computer: ${computerPoint}`;
     }

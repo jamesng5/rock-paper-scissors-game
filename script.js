@@ -1,89 +1,64 @@
-/* older version
-
-
-//console.log(getComputerChoice());
-
-
-
-/*
-const playerChoice = "sciSsoRs";
-const computerSelection = getComputerChoice();
-
-
-
-function game(){
-    let playerPoint = 0;
-    let computerPoint = 0;
-    /*
-    for (let i = 0; i < 5; i++){
-
-        let playerSelection = prompt("Enter your choice: ");
-        const computerSelection = getComputerChoice();
-
-        //console.log("Computer: " + computerSelection);
-        
-        if (gameRound(playerSelection, computerSelection) === 1){
-            playerPoint++;
-            console.log("You won! " + playerSelection + " beat " + computerSelection);
-        } else if (gameRound(playerSelection, computerSelection) === -1){
-            computerPoint++;
-            console.log("You lose! " + computerSelection + " beat " + playerSelection);
-        } else {
-            console.log("It's a tie game!");
-        }
-    }
-    
-
-    
-
-    if (playerPoint === computerPoint){
-        return "It's a tie game!"
-    } else if (playerPoint > computerPoint){
-        return "You won! ";
-    } else if (computerPoint > playerPoint){
-        return "You lose! ";
-    }
-}*/
-
 let playerSelection;
 let computerSelection;
 let playerPoint = 0;
 let computerPoint = 0;
 
-//get computer choice
+const container = document.querySelector('.container');
+const gamePoint = document.createElement('div');
+const winner = document.createElement('div');
+let buttons = document.querySelectorAll('button');
+
 function getComputerChoice(){
     const type = ["rock", "paper", "scissors"];
     return type[Math.floor(Math.random() * type.length)];
 }
 
-function playRound(playerSelection, computerSelection){
-    computerSelection = getComputerChoice();
-    //console.log(computerSelection);
-
-    if (playerSelection.toLowerCase() === computerSelection ){
-        return 0;
+function gameResult(){
+    if (playerPoint === 5 || computerPoint === 5){
+        if (playerPoint === computerPoint){
+            winner.textContent = "Tie Game!";
+        } else if (playerPoint > computerPoint){
+            winner.textContent = "You won!";
+        } else {
+            winner.textContent = "Computer won!";
+        }
     }
 
-    else if ((playerSelection.toLowerCase() === "rock" && computerSelection === "scissors") ||
-        (playerSelection.toLowerCase() === "paper" && computerSelection === "rock") ||
-        (playerSelection.toLowerCase() === "scissors" && computerSelection === "paper")){
-            playerPoint++;
-            return 1; 
-    }
-    
-    else if ((computerSelection === "rock" && playerSelection.toLowerCase() === "scissors") ||
-        (computerSelection === "paper" && playerSelection.toLowerCase() === "rock") ||
-        (computerSelection === "scissors" && playerSelection.toLowerCase() === "paper")){
-            computerPoint++;
-            return -1;
-    }
+    container.appendChild(winner);
 }
 
-let buttons = document.querySelectorAll('button');
+function playRound(playerSelection, computerSelection){
+
+    if (playerSelection === computerSelection ){
+        //container.textContent = "It's a tie game!";
+        container.textContent = "It's a tie game!";
+        gamePoint.textContent = `Player: ${playerPoint} ||| Computer: ${computerPoint}`;
+    }
+
+    else if ((playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper")){
+            playerPoint++;
+            container.textContent = `You win! ${playerSelection} beat ${computerSelection}`;
+            gamePoint.textContent = `Player: ${playerPoint} ||| Computer: ${computerPoint}`;
+    }
+    
+    else if ((computerSelection === "rock" && playerSelection === "scissors") ||
+        (computerSelection === "paper" && playerSelection === "rock") ||
+        (computerSelection === "scissors" && playerSelection === "paper")){
+            computerPoint++;
+            container.textContent = `You lose! ${computerSelection} beat ${playerSelection}`;
+            gamePoint.textContent = `Player: ${playerPoint} ||| Computer: ${computerPoint}`;
+    }
+    container.appendChild(gamePoint);
+    gameResult();
+}
+
 buttons.forEach((button) =>{
     button.addEventListener('click', (e) => {
         playerSelection = e.target.innerText;
-        playRound(playerSelection.toLowerCase(), computerSelection);
+        playRound(playerSelection.toLowerCase(), getComputerChoice());
     });
 })
+
 
